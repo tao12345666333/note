@@ -1,0 +1,5 @@
+baseurl = "https://tao12345666333.github.io/note/"
+title = "MoeLove Note"
+languageCode = "en-us"
+[Params]
+  Author = "TaoBeier"
