@@ -1,51 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>MoeLove Note</title>
+    <title>MoeLove Note </title>
     <link>https://tao12345666333.github.io/note/index.xml</link>
-    <description>Recent content on MoeLove Note</description>
-    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Jan 2017 00:29:57 +0800</lastBuildDate>
-    <atom:link href="https://tao12345666333.github.io/note/index.xml" rel="self" type="application/rss+xml" />
+    <author>TaoBeier</author>
+    <rights>(C) 2017</rights>
+    <updated>2017-01-16 00:29:57 &#43;0800 CST</updated>
+
     
-    <item>
-      <title>实用型 HTTP 指北</title>
-      <link>https://tao12345666333.github.io/note/http/</link>
-      <pubDate>Mon, 16 Jan 2017 00:29:57 +0800</pubDate>
       
-      <guid>https://tao12345666333.github.io/note/http/</guid>
-      <description>
-
-&lt;p&gt;如无特殊说明， 下面举例都是指 HTTP/1.1 为例。&lt;/p&gt;
-
-&lt;h1 id=&#34;简介及发展&#34;&gt;简介及发展&lt;/h1&gt;
-
-&lt;h1 id=&#34;消息结构&#34;&gt;消息结构&lt;/h1&gt;
-
-&lt;h2 id=&#34;请求格式&#34;&gt;请求格式&lt;/h2&gt;
-
-&lt;h2 id=&#34;响应格式&#34;&gt;响应格式&lt;/h2&gt;
-
-&lt;h1 id=&#34;请求头&#34;&gt;请求头&lt;/h1&gt;
-
-&lt;h1 id=&#34;请求方法&#34;&gt;请求方法&lt;/h1&gt;
-
-&lt;h1 id=&#34;响应头&#34;&gt;响应头&lt;/h1&gt;
-
-&lt;h1 id=&#34;content-type&#34;&gt;Content-Type&lt;/h1&gt;
-
-&lt;h1 id=&#34;http-状态码&#34;&gt;HTTP 状态码&lt;/h1&gt;
-
-&lt;h1 id=&#34;https-相关&#34;&gt;HTTPS 相关&lt;/h1&gt;
-
-&lt;h1 id=&#34;用户认证&#34;&gt;用户认证&lt;/h1&gt;
-
-&lt;h1 id=&#34;基于-http-的其他协议&#34;&gt;基于 HTTP 的其他协议&lt;/h1&gt;
-
-&lt;h1 id=&#34;web-安全相关&#34;&gt;Web 安全相关&lt;/h1&gt;
-</description>
-    </item>
     
+
   </channel>
 </rss>
