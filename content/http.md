@@ -2,6 +2,7 @@
 title = "实用型 HTTP 指北"
 draft = false
 date = "2017-01-16T00:29:57+08:00"
+categories = [ "Web" ]
 
 +++
 
