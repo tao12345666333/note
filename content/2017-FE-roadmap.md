@@ -1,4 +1,10 @@
-# 2017 FrontEnd Roadmap(后端程序员前端生存指北)
++++
+title = "2017 FrontEnd Roadmap(后端程序员前端生存指北)"
+draft = false
+date = "2017-02-20T00:29:57+08:00"
+categories = [ "Web" ]
+
++++
 
 > 注：本篇内容目标定位非专职前端程序员。
 
