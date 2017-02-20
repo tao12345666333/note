@@ -10,7 +10,7 @@ categories = [ "Web" ]
 
 # 简介及发展
 
-超文本传输协议（HTTP 协议）是一个应用层的协议，也是 Web 开发中最常使用的协议之一。
+超文本传输议（HTTP 协议）是一个应用层的协议，是一种典型的 client-server 协议，也是 Web 开发中最常使用的协议之一。
 
 HTTP/0.9 是在 1991 年发布的第一个正式版本, 只接受 `GET` 方法，且不支持请求头。
 HTTP/1.0 开始在通讯中指定，有了很多目前在使用的基本结构等。
@@ -108,7 +108,13 @@ e.g.
 # 用户认证
 
 ## basic auth
+
+* 简单用户认证，安全性不高
+
+
 ## cookie, session 等
+
+由于 HTTP 协议是无状态协议，为了能够记住用户状态，我们采用 Session 或者 Cookie 的方式来记住用户会话信息。可参考https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
 
 # Web 安全相关
 
