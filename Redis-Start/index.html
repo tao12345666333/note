@@ -15,12 +15,12 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tao12345666333.github.io/note//index.xml">
 
     
-    <title>2017 FrontEnd Roadmap(后端程序员前端生存指北) - MoeLove Note</title>
-    <meta property='og:title' content="2017 FrontEnd Roadmap(后端程序员前端生存指北) - MoeLove Note">
+    <title>Redis Start - MoeLove Note</title>
+    <meta property='og:title' content="Redis Start - MoeLove Note">
     <meta property="og:type" content="article">
     
 
-    <meta property="og:url" content="https://tao12345666333.github.io/note/2017-FE-roadmap/">
+    <meta property="og:url" content="https://tao12345666333.github.io/note/Redis-Start/">
     
     
 
@@ -42,19 +42,11 @@
       <article class="single" itemscope="itemscope" itemtype="http://schema.org/Article">
 
         <meta itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" content="https://tao12345666333.github.io/note/"/>
-        <meta itemprop="dateModified" content="2017-02-20T00:29:57&#43;08:00">
-        <meta itemprop="headline" content="2017 FrontEnd Roadmap(后端程序员前端生存指北)">
-        <meta itemprop="description" content="注：本篇内容目标定位非专职前端程序员。
- 基础知识  HTML5、CSS3、JavaScript
- 掌握基本用法 参考资料：  基础入门看W3School http://www.w3school.com.cn/html/ 细致掌握看MDN https://developer.mozilla.org/en-US/docs/Learn/HTML   常规布局方式
- 标准规范
- HTTP Ajax   开发工具  编辑器
- 效率第一 VSC 建议初期使用VSC进行开发调试等 https://code.visualstudio.com/ Sublime Text https://www.sublimetext.com/ 在未完全熟悉相关知识前，慎用 Vim. 初学建议使用 http://www.jianshu.com/p/545b27787791 已经集成了相对完善的前后端支持  浏览器
- Chrome Safari FireFox  打包构建工具(使用前请明确使用的必要性)
- grunt webpack gulp npm bower  版本管理工具
- Git (Git 使用可以参考 man git)  预处理器
- less （CSS 的预编译器，如遇到大型项目推荐使用）   调试工具 稍后我会补充一份调试工具如何使用的文章">
-        <meta itemprop="url" content="https://tao12345666333.github.io/note/2017-FE-roadmap/">
+        <meta itemprop="dateModified" content="2017-02-23T00:54:21&#43;08:00">
+        <meta itemprop="headline" content="Redis Start">
+        <meta itemprop="description" content="  Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集（sorted sets）
+ Redis 介绍 Reids 安装及启动 常用数据结构及其用法 HA 方案 ">
+        <meta itemprop="url" content="https://tao12345666333.github.io/note/Redis-Start/">
         <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
           <meta itemprop="url" content="https://tao12345666333.github.io/note/images/default.jpg" />
           <meta itemprop="width" content="800">
@@ -75,117 +67,24 @@
         <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
 
         <header class="article-header">
-          <time itemprop="datePublished" pubdate="pubdate" datetime="2017-02-20T00:29:57&#43;08:00">Mon, Feb 20, 2017</time>
-          <h1 class="article-title">2017 FrontEnd Roadmap(后端程序员前端生存指北)</h1>
+          <time itemprop="datePublished" pubdate="pubdate" datetime="2017-02-23T00:54:21&#43;08:00">Thu, Feb 23, 2017</time>
+          <h1 class="article-title">Redis Start</h1>
         </header>
 
         <div class="article-body" itemprop="articleBody">
           
 
 <blockquote>
-<p>注：本篇内容目标定位非专职前端程序员。</p>
+<p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集（sorted sets）</p>
 </blockquote>
 
-<h1 id="基础知识">基础知识</h1>
+<h1 id="redis-介绍">Redis 介绍</h1>
 
-<ul>
-<li><p>HTML5、CSS3、JavaScript</p>
+<h1 id="reids-安装及启动">Reids 安装及启动</h1>
 
-<ul>
-<li>掌握基本用法</li>
-<li>参考资料：
+<h1 id="常用数据结构及其用法">常用数据结构及其用法</h1>
 
-<ul>
-<li>基础入门看W3School <a href="http://www.w3school.com.cn/html/">http://www.w3school.com.cn/html/</a></li>
-<li>细致掌握看MDN <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML">https://developer.mozilla.org/en-US/docs/Learn/HTML</a></li>
-</ul></li>
-</ul></li>
-
-<li><p>常规布局方式</p></li>
-
-<li><p>标准规范</p>
-
-<ul>
-<li>HTTP</li>
-<li>Ajax</li>
-</ul></li>
-</ul>
-
-<h1 id="开发工具">开发工具</h1>
-
-<ul>
-<li><p>编辑器</p>
-
-<ul>
-<li>效率第一</li>
-<li>VSC 建议初期使用VSC进行开发调试等 <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></li>
-<li>Sublime Text <a href="https://www.sublimetext.com/">https://www.sublimetext.com/</a></li>
-<li>在未完全熟悉相关知识前，慎用 Vim. 初学建议使用 <a href="http://www.jianshu.com/p/545b27787791">http://www.jianshu.com/p/545b27787791</a> 已经集成了相对完善的前后端支持</li>
-</ul></li>
-
-<li><p>浏览器</p>
-
-<ul>
-<li>Chrome</li>
-<li>Safari</li>
-<li>FireFox</li>
-</ul></li>
-
-<li><p>打包构建工具(使用前请明确使用的必要性)</p>
-
-<ul>
-<li>grunt</li>
-<li>webpack</li>
-<li>gulp</li>
-<li>npm</li>
-<li>bower</li>
-</ul></li>
-
-<li><p>版本管理工具</p>
-
-<ul>
-<li>Git (Git 使用可以参考 man git)</li>
-</ul></li>
-
-<li><p>预处理器</p>
-
-<ul>
-<li>less （CSS 的预编译器，如遇到大型项目推荐使用）</li>
-</ul></li>
-</ul>
-
-<h1 id="调试工具">调试工具</h1>
-
-<p>稍后我会补充一份调试工具如何使用的文章</p>
-
-<ul>
-<li>浏览器 Devtools (建议使用Chrome、FireFox)</li>
-<li>辅助抓包工具</li>
-</ul>
-
-<h1 id="性能及安全">性能及安全</h1>
-
-<ul>
-<li>代码压缩、混淆</li>
-<li>静态资源部署CDN</li>
-<li>防 csrf, 前端转义，避免js注入</li>
-</ul>
-
-<h1 id="css-框架">CSS 框架</h1>
-
-<p>Bootstrap 相对应用更广泛，也有更多主题可供选择。易用</p>
-
-<ul>
-<li>Bootstrap <a href="http://getbootstrap.com/">http://getbootstrap.com/</a>  中文站 <a href="http://www.bootcss.com/">http://www.bootcss.com/</a></li>
-<li>SemanticUI <a href="http://semantic-ui.com/">http://semantic-ui.com/</a></li>
-</ul>
-
-<h1 id="js-框架-类库">JS 框架、类库</h1>
-
-<ul>
-<li>Jquery <a href="http://api.jquery.com/">http://api.jquery.com/</a> 老牌JS类库，可以屏蔽很多细节</li>
-<li>Angular/React/Vuejs 等是前端框架。 Vuejs 入门相对简单, 且我们已经在项目中积累了很多经验</li>
-</ul>
+<h1 id="ha-方案">HA 方案</h1>
 
         </div>
 
@@ -194,10 +93,10 @@
           
 
           <div class="section share">
-            <a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2ftao12345666333.github.io%2fnote%2f2017-FE-roadmap%2f&t=2017%20FrontEnd%20Roadmap%28%e5%90%8e%e7%ab%af%e7%a8%8b%e5%ba%8f%e5%91%98%e5%89%8d%e7%ab%af%e7%94%9f%e5%ad%98%e6%8c%87%e5%8c%97%29" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
-            <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2f2017-FE-roadmap%2f&text=2017%20FrontEnd%20Roadmap%28%e5%90%8e%e7%ab%af%e7%a8%8b%e5%ba%8f%e5%91%98%e5%89%8d%e7%ab%af%e7%94%9f%e5%ad%98%e6%8c%87%e5%8c%97%29&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
-            <a href="https://plus.google.com/share?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2f2017-FE-roadmap%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
-            <a href="http://getpocket.com/edit?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2f2017-FE-roadmap%2f&title=2017%20FrontEnd%20Roadmap%28%e5%90%8e%e7%ab%af%e7%a8%8b%e5%ba%8f%e5%91%98%e5%89%8d%e7%ab%af%e7%94%9f%e5%ad%98%e6%8c%87%e5%8c%97%29" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+            <a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Start%2f&t=Redis%20Start" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+            <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Start%2f&text=Redis%20Start&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+            <a href="https://plus.google.com/share?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Start%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+            <a href="http://getpocket.com/edit?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Start%2f&title=Redis%20Start" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
           </div>
 
           
@@ -216,12 +115,10 @@
     <header><div class="title">TableOfContents</div></header>
     <div class="list-default"><nav id="TableOfContents">
 <ul>
-<li><a href="#基础知识">基础知识</a></li>
-<li><a href="#开发工具">开发工具</a></li>
-<li><a href="#调试工具">调试工具</a></li>
-<li><a href="#性能及安全">性能及安全</a></li>
-<li><a href="#css-框架">CSS 框架</a></li>
-<li><a href="#js-框架-类库">JS 框架、类库</a></li>
+<li><a href="#redis-介绍">Redis 介绍</a></li>
+<li><a href="#reids-安装及启动">Reids 安装及启动</a></li>
+<li><a href="#常用数据结构及其用法">常用数据结构及其用法</a></li>
+<li><a href="#ha-方案">HA 方案</a></li>
 </ul>
 </nav></div>
   </div>
