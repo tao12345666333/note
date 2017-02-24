@@ -1,7 +1,8 @@
 +++
 title = "MongoDB Start"
-draft = true
+draft = false
 date = "2017-02-22T23:53:31+08:00"
+categories = [ "Web" ]
 
 +++
 
