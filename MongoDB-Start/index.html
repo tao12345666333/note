@@ -45,7 +45,11 @@
         <meta itemprop="dateModified" content="2017-02-22T23:53:31&#43;08:00">
         <meta itemprop="headline" content="MongoDB Start">
         <meta itemprop="description" content="  MongoDB 是基于分布式文件存储的由 C&#43;&#43; 编写的数据库. 目标是提供可扩展的高性能数据存储解决方案
- NoSQL vs SQL MongoDB 介绍 MongoDB 安装及启动 * 安装 https://docs.mongodb.com/manual/installation/ * 启动  连接 * MongoDB shell * `mongodb://[username:password@]host1[:port1],...[,hostN[:portN]]][/[database][?options]]` * 各语言驱动客户端  基本操作 (CRUD) 集群操作 ">
+ NoSQL 介绍 NoSQL (Not Only SQL) 非关系型数据库, 与之相对应的就是传统的关系型数据库. 那我们在什么场景下可能选择 NoSQL 呢？在数据需求尚不明确或者需要存储大量非结构化数据， 那么使用非关系型数据库可能对我们更有利一些。
+MongoDB 介绍 现代化的面向文档的非关系型数据库，数据格式采用 BSON（类 JSON）的格式存储，MongoDB shell 中可使用 JavaScript 语法.
+MongoDB 安装及启动 安装  官方文档&ndash;支持大多数发行版 源码编译安装  启动 可以直接执行 mongod 启动，如果不指定 dbpath 则默认为当前目录（建议手动指定，部分版本可能会有行为差异）
+sudo mongod --dbpath=/tmp
+连接 * MongoDB shell * `mongodb://[username:password@]host1[:port1],...[,hostN[:portN]]][/[database][?options]]` * 各语言驱动客户端  基本操作 (CRUD) 集群操作 ">
         <meta itemprop="url" content="https://tao12345666333.github.io/note/MongoDB-Start/">
         <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
           <meta itemprop="url" content="https://tao12345666333.github.io/note/images/default.jpg" />
@@ -78,15 +82,28 @@
 <p>MongoDB 是基于分布式文件存储的由 C++ 编写的数据库. 目标是提供可扩展的高性能数据存储解决方案</p>
 </blockquote>
 
-<h1 id="nosql-vs-sql">NoSQL vs SQL</h1>
+<h1 id="nosql-介绍">NoSQL 介绍</h1>
+
+<p>NoSQL (Not Only SQL) 非关系型数据库, 与之相对应的就是传统的关系型数据库. 那我们在什么场景下可能选择 NoSQL 呢？在数据需求尚不明确或者需要存储大量非结构化数据， 那么使用非关系型数据库可能对我们更有利一些。</p>
 
 <h1 id="mongodb-介绍">MongoDB 介绍</h1>
 
+<p>现代化的面向文档的非关系型数据库，数据格式采用 BSON（类 JSON）的格式存储，MongoDB shell 中可使用 JavaScript 语法.</p>
+
 <h1 id="mongodb-安装及启动">MongoDB 安装及启动</h1>
 
-<pre><code>* 安装  https://docs.mongodb.com/manual/installation/
-* 启动
-</code></pre>
+<h2 id="安装">安装</h2>
+
+<ul>
+<li><a href="https://docs.mongodb.com/manual/installation/">官方文档&ndash;支持大多数发行版</a></li>
+<li><a href="http://moelove.info/2015/09/13/%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91MongoDB/">源码编译安装</a></li>
+</ul>
+
+<h2 id="启动">启动</h2>
+
+<p>可以直接执行 <code>mongod</code> 启动，如果不指定 <code>dbpath</code> 则默认为当前目录（建议手动指定，部分版本可能会有行为差异）</p>
+
+<p><code>sudo mongod --dbpath=/tmp</code></p>
 
 <h1 id="连接">连接</h1>
 
@@ -128,9 +145,13 @@
     <header><div class="title">TableOfContents</div></header>
     <div class="list-default"><nav id="TableOfContents">
 <ul>
-<li><a href="#nosql-vs-sql">NoSQL vs SQL</a></li>
+<li><a href="#nosql-介绍">NoSQL 介绍</a></li>
 <li><a href="#mongodb-介绍">MongoDB 介绍</a></li>
-<li><a href="#mongodb-安装及启动">MongoDB 安装及启动</a></li>
+<li><a href="#mongodb-安装及启动">MongoDB 安装及启动</a>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#启动">启动</a></li>
+</ul></li>
 <li><a href="#连接">连接</a></li>
 <li><a href="#基本操作-crud">基本操作 (CRUD)</a></li>
 <li><a href="#集群操作">集群操作</a></li>
@@ -165,7 +186,28 @@
       <time>Wed, Feb 22, 2017</time>
       <h2 class="title">MongoDB Start</h2>
       <div class="summary">  MongoDB 是基于分布式文件存储的由 C++ 编写的数据库. 目标是提供可扩展的高性能数据存储解决方案
- NoSQL vs SQL MongoDB 介绍 MongoDB 安装及启动 * 安装 https://docs.mongodb.com/manual/installation/ * 启动  连接 * MongoDB shell * `mongodb://[username:password@]host1[:port1],...[,hostN[:portN]]][/[database][?options]]` * 各语言驱动客户端  基本操作 (CRUD) 集群操作 </div>
+ NoSQL 介绍 NoSQL (Not Only SQL) 非关系型数据库, 与之相对应的就是传统的关系型数据库. 那我们在什么场景下可能选择 NoSQL 呢？在数据需求尚不明确或者需要存储大量非结构化数据， 那么使用非关系型数据库可能对我们更有利一些。
+MongoDB 介绍 现代化的面向文档的非关系型数据库，数据格式采用 BSON（类 JSON）的格式存储，MongoDB shell 中可使用 JavaScript 语法.
+MongoDB 安装及启动 安装  官方文档&ndash;支持大多数发行版 源码编译安装  启动 可以直接执行 mongod 启动，如果不指定 dbpath 则默认为当前目录（建议手动指定，部分版本可能会有行为差异）
+sudo mongod --dbpath=/tmp
+连接 * MongoDB shell * `mongodb://[username:password@]host1[:port1],...[,hostN[:portN]]][/[database][?options]]` * 各语言驱动客户端  基本操作 (CRUD) 集群操作 </div>
+    </div>
+  </a>
+</article>
+</div>
+      
+      <div class="sm"><article class="li">
+  <a href="https://tao12345666333.github.io/note/MongoDB-Security/" class="clearfix">
+    <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
+    <div class="detail">
+      <time>Mon, Feb 20, 2017</time>
+      <h2 class="title">MongoDB Security</h2>
+      <div class="summary"> 认证  SCRAM-SHA-1 (default password authorization mechanism)
+mongod --auth
+security: authorization: 'enabled'  X.509
+ LDAP
+ Kerberos
+  授权 </div>
     </div>
   </a>
 </article>

@@ -1,4 +1,4 @@
-<div class="list">
+<div class="single">
   <!DOCTYPE html>
 <html>
   <head>
@@ -15,12 +15,12 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tao12345666333.github.io/note//index.xml">
 
     
-    <title>Categories - MoeLove Note</title>
-    <meta property='og:title' content="Categories - MoeLove Note">
+    <title>MongoDB Security - MoeLove Note</title>
+    <meta property='og:title' content="MongoDB Security - MoeLove Note">
     <meta property="og:type" content="article">
     
 
-    <meta property="og:url" content="https://tao12345666333.github.io/note/categories/">
+    <meta property="og:url" content="https://tao12345666333.github.io/note/MongoDB-Security/">
     
     
 
@@ -35,20 +35,103 @@
     <div class="container site">
 
 
+
   <div class="row">
     <div class="col-sm-9">
 
-      <header class="title"><h1>Categories</h1></header>
+      <article class="single" itemscope="itemscope" itemtype="http://schema.org/Article">
 
-      
-      <a href="/categories/web/" class="category">web</a>
-      
+        <meta itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" content="https://tao12345666333.github.io/note/"/>
+        <meta itemprop="dateModified" content="2017-02-20T23:13:31&#43;08:00">
+        <meta itemprop="headline" content="MongoDB Security">
+        <meta itemprop="description" content=" 认证  SCRAM-SHA-1 (default password authorization mechanism)
+mongod --auth
+security: authorization: &#39;enabled&#39;  X.509
+ LDAP
+ Kerberos
+  授权 ">
+        <meta itemprop="url" content="https://tao12345666333.github.io/note/MongoDB-Security/">
+        <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+          <meta itemprop="url" content="https://tao12345666333.github.io/note/images/default.jpg" />
+          <meta itemprop="width" content="800">
+          <meta itemprop="height" content="800">
+        </div>
+        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+          <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="https://tao12345666333.github.io/note/images/logo.jpg">
+            <meta itemprop="width" content="100">
+            <meta itemprop="height" content="100">
+          </div>
+          <meta itemprop="name" content="MoeLove Note">
+        </div>
+        <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <meta itemprop="name" content="TaoBeier">
+        </div>
 
+        <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
+
+        <header class="article-header">
+          <time itemprop="datePublished" pubdate="pubdate" datetime="2017-02-20T23:13:31&#43;08:00">Mon, Feb 20, 2017</time>
+          <h1 class="article-title">MongoDB Security</h1>
+        </header>
+
+        <div class="article-body" itemprop="articleBody">
+          
+
+<h1 id="认证">认证</h1>
+
+<ul>
+<li><p>SCRAM-SHA-1 (default password authorization mechanism)</p>
+
+<p><code>mongod --auth</code></p>
+
+<pre><code class="language-yaml">security:
+  authorization: 'enabled'
+</code></pre></li>
+
+<li><p>X.509</p></li>
+
+<li><p>LDAP</p></li>
+
+<li><p>Kerberos</p></li>
+</ul>
+
+<h1 id="授权">授权</h1>
+
+        </div>
+
+
+        <aside>
+          
+
+          <div class="section share">
+            <a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2ftao12345666333.github.io%2fnote%2fMongoDB-Security%2f&t=MongoDB%20Security" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+            <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fMongoDB-Security%2f&text=MongoDB%20Security&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+            <a href="https://plus.google.com/share?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fMongoDB-Security%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+            <a href="http://getpocket.com/edit?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fMongoDB-Security%2f&title=MongoDB%20Security" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+          </div>
+
+          
+          
+          
+        </aside>
+
+      </article>
     </div>
 
     <div class="col-sm-3">
       <aside class="site">
 
+  
+  <div class="section">
+    <header><div class="title">TableOfContents</div></header>
+    <div class="list-default"><nav id="TableOfContents">
+<ul>
+<li><a href="#认证">认证</a></li>
+<li><a href="#授权">授权</a></li>
+</ul>
+</nav></div>
+  </div>
   
 
   
@@ -166,6 +249,7 @@ HTTP/0.9 是在 1991 年发布的第一个正式版本, 只接受 GET 方法，�
     </div>
 
   </div>
+
       </div>
 
     <footer class="site">
