@@ -9,7 +9,7 @@ title = "Git Start"
 
 ## Introduction
 
-分布式版本管理工具
+分布式版本控制工具
 
 ## Setup and Config
 
