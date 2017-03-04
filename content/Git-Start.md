@@ -1,7 +1,9 @@
 +++
 date = "2017-03-01T23:53:04+08:00"
-draft = true
+draft = false
 title = "Git Start"
+categories = [ "Linux" ]
+tags = ["Git"]
 
 +++
 

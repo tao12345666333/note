@@ -2,7 +2,7 @@
 title = "MongoDB Start"
 draft = false
 date = "2017-02-22T23:53:31+08:00"
-categories = [ "Web" ]
+categories = [ "Database" ]
 tags = ["MongoDB"]
 
 +++

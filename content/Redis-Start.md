@@ -2,7 +2,7 @@
 title = "Redis Start"
 draft = false
 date = "2017-02-23T00:54:21+08:00"
-categories = [ "Web" ]
+categories = [ "Database" ]
 tags = ["Redis"]
 
 +++
