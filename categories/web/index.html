@@ -45,50 +45,6 @@
           
           <div class="col-sm-4">
             <article class="li">
-  <a href="https://tao12345666333.github.io/note/Redis-Start/" class="clearfix">
-    <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
-    <div class="detail">
-      <time>Thu, Feb 23, 2017</time>
-      <h2 class="title">Redis Start</h2>
-      <div class="summary">  Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集（sorted sets）
- Redis 介绍 Reids 安装及启动 常用数据结构及其用法 String Reids 中的基本数据结构，set/get 用于存取数据
-Hash 一般用于存储对象，类似Python中的字典
-List 列表， 可用作 FIFO 或者 LIFO 使用
-Set 集合，提供了一般集合的常规运算
-Sorted Set 可排序的集合
-HA 方案  主从
-配置 slaveof 即可
- 哨兵
-一个特殊状态的 redis-server, 监听 master 的心跳包， 如果 master 挂了，则进行主从切换
- 集群 cluster
-  Reids 数据持久化 RDB AOF </div>
-    </div>
-  </a>
-</article>
-
-          </div>
-          
-          <div class="col-sm-4">
-            <article class="li">
-  <a href="https://tao12345666333.github.io/note/MongoDB-Start/" class="clearfix">
-    <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
-    <div class="detail">
-      <time>Wed, Feb 22, 2017</time>
-      <h2 class="title">MongoDB Start</h2>
-      <div class="summary">  MongoDB 是基于分布式文件存储的由 C++ 编写的数据库. 目标是提供可扩展的高性能数据存储解决方案
- NoSQL 介绍 NoSQL (Not Only SQL) 非关系型数据库, 与之相对应的就是传统的关系型数据库. 那我们在什么场景下可能选择 NoSQL 呢？在数据需求尚不明确或者需要存储大量非结构化数据， 那么使用非关系型数据库可能对我们更有利一些。
-MongoDB 介绍 现代化的面向文档的非关系型数据库，数据格式采用 BSON（类 JSON）的格式存储，MongoDB shell 中可使用 JavaScript 语法.
-MongoDB 安装及启动 安装  官方文档&ndash;支持大多数发行版 源码编译安装  启动 可以直接执行 mongod 启动，如果不指定 dbpath 则默认为当前目录（建议手动指定，部分版本可能会有行为差异）
-sudo mongod --dbpath=/tmp
-连接 * MongoDB shell * `mongodb://[username:password@]host1[:port1],...[,hostN[:portN]]][/[database][?options]]` * 各语言驱动客户端  基本操作 (CRUD) 集群操作 </div>
-    </div>
-  </a>
-</article>
-
-          </div>
-          
-          <div class="col-sm-4">
-            <article class="li">
   <a href="https://tao12345666333.github.io/note/2017-FE-roadmap/" class="clearfix">
     <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
     <div class="detail">
@@ -147,6 +103,24 @@ HTTP/0.9 是在 1991 年发布的第一个正式版本, 只接受 GET 方法，�
   <div class="section">
     <header><div class="title">LatestPosts</div></header>
     <div class="content">
+      
+      <div class="sm"><article class="li">
+  <a href="https://tao12345666333.github.io/note/Redis-Protocol/" class="clearfix">
+    <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
+    <div class="detail">
+      <time>Sat, Mar 4, 2017</time>
+      <h2 class="title">理解 Redis 协议</h2>
+      <div class="summary">简介 Redis 的客户端和服务端之间采取了一种独立名为 RESP(REdis Serialization Protocol) 的协议，作者主要考虑了以下几个点：
+ 容易实现 解析快 人类可读  注意：RESP 虽然是为 Redis 设计的，但是同样也可以用于其他 C/S 的软件。
+数据类型及示例 RESP 主要可以序列化以下几种类型：整数，单行回复(简单字符串)，数组，错误信息，多行字符串。Redis 客户端向服务端发送的是一组由执行的命令组成的字符串数组，服务端根据不同的命令回复不同类型的数据，但协议的每部分都是以 &ldquo;\r\n&rdquo; (CRLF) 结尾的。另外 RESP 是二进制安全的，不需要处理从一个进程到另一个进程的传输，因为它使用了前缀长度进行传输。
+在 RESP 中, 一些数据的类型通过它的第一个字节进行判断：
+ 单行回复：回复的第一个字节是 &ldquo;+&rdquo; 错误信息：回复的第一个字节是 &ldquo;-&rdquo; 整形数字：回复的第一个字节是 &ldquo;:&rdquo; 多行字符串：回复的第一个字节是 &ldquo;\$&rdquo; 数组：回复的第一个字节是 &ldquo;*&rdquo;  单行回复 以 &ldquo;+&rdquo; 开头，以 &ldquo;\r\n&rdquo; 结尾的字符串形式。e.g.
++OK\r\n  响应的客户端库，应该返回除 &ldquo;+&rdquo; 和 CRLF 以外的内容，例如上面的内容，则返回 &ldquo;OK&rdquo;. e.g.
+127.0.0.1:6379&gt; set name TaoBeier +OK\r\n # 服务端实际返回 --- OK # redis-cli 客户端显示  错误信息 错误信息和单行回复很像，不过是把 &ldquo;+&rdquo; 替换成了 &ldquo;-&ldquo;。而这两者之间真正的区别是，错误信息会被客户端视为异常，并且组成错误类型的是错误消息本身。e.</div>
+    </div>
+  </a>
+</article>
+</div>
       
       <div class="sm"><article class="li">
   <a href="https://tao12345666333.github.io/note/Git-Start/" class="clearfix">
@@ -265,14 +239,14 @@ HTTP/0.9 是在 1991 年发布的第一个正式版本, 只接受 GET 方法，�
   <div class="section taxonomies">
     <header><div class="title">category</div></header>
     <div class="content">
-      <a href="https://tao12345666333.github.io/note/categories/web">web</a>
+      <a href="https://tao12345666333.github.io/note/categories/database">database</a><a href="https://tao12345666333.github.io/note/categories/web">web</a><a href="https://tao12345666333.github.io/note/categories/linux">linux</a>
     </div>
   </div>
   
   <div class="section taxonomies">
     <header><div class="title">tag</div></header>
     <div class="content">
-      <a href="https://tao12345666333.github.io/note/tags/mongodb">mongodb</a><a href="https://tao12345666333.github.io/note/tags/redis">redis</a>
+      <a href="https://tao12345666333.github.io/note/tags/mongodb">mongodb</a><a href="https://tao12345666333.github.io/note/tags/redis">redis</a><a href="https://tao12345666333.github.io/note/tags/git">git</a>
     </div>
   </div>
   

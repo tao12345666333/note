@@ -1,4 +1,4 @@
-<div class="list">
+<div class="single">
   <!DOCTYPE html>
 <html>
   <head>
@@ -15,12 +15,12 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://tao12345666333.github.io/note//index.xml">
 
     
-    <title>Categories - MoeLove Note</title>
-    <meta property='og:title' content="Categories - MoeLove Note">
+    <title>理解 Redis 协议 - MoeLove Note</title>
+    <meta property='og:title' content="理解 Redis 协议 - MoeLove Note">
     <meta property="og:type" content="article">
     
 
-    <meta property="og:url" content="https://tao12345666333.github.io/note/categories/">
+    <meta property="og:url" content="https://tao12345666333.github.io/note/Redis-Protocol/">
     
     
 
@@ -35,24 +35,253 @@
     <div class="container site">
 
 
+
   <div class="row">
     <div class="col-sm-9">
 
-      <header class="title"><h1>Categories</h1></header>
+      <article class="single" itemscope="itemscope" itemtype="http://schema.org/Article">
 
-      
-      <a href="/categories/database/" class="category">database</a>
-      
-      <a href="/categories/linux/" class="category">linux</a>
-      
-      <a href="/categories/web/" class="category">web</a>
-      
+        <meta itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" content="https://tao12345666333.github.io/note/"/>
+        <meta itemprop="dateModified" content="2017-03-04T23:22:05&#43;08:00">
+        <meta itemprop="headline" content="理解 Redis 协议">
+        <meta itemprop="description" content="简介 Redis 的客户端和服务端之间采取了一种独立名为 RESP(REdis Serialization Protocol) 的协议，作者主要考虑了以下几个点：
+ 容易实现 解析快 人类可读  注意：RESP 虽然是为 Redis 设计的，但是同样也可以用于其他 C/S 的软件。
+数据类型及示例 RESP 主要可以序列化以下几种类型：整数，单行回复(简单字符串)，数组，错误信息，多行字符串。Redis 客户端向服务端发送的是一组由执行的命令组成的字符串数组，服务端根据不同的命令回复不同类型的数据，但协议的每部分都是以 &ldquo;\r\n&rdquo; (CRLF) 结尾的。另外 RESP 是二进制安全的，不需要处理从一个进程到另一个进程的传输，因为它使用了前缀长度进行传输。
+在 RESP 中, 一些数据的类型通过它的第一个字节进行判断：
+ 单行回复：回复的第一个字节是 &ldquo;&#43;&rdquo; 错误信息：回复的第一个字节是 &ldquo;-&rdquo; 整形数字：回复的第一个字节是 &ldquo;:&rdquo; 多行字符串：回复的第一个字节是 &ldquo;\$&rdquo; 数组：回复的第一个字节是 &ldquo;*&rdquo;  单行回复 以 &ldquo;&#43;&rdquo; 开头，以 &ldquo;\r\n&rdquo; 结尾的字符串形式。e.g.
+&#43;OK\r\n  响应的客户端库，应该返回除 &ldquo;&#43;&rdquo; 和 CRLF 以外的内容，例如上面的内容，则返回 &ldquo;OK&rdquo;. e.g.
+127.0.0.1:6379&gt; set name TaoBeier &#43;OK\r\n # 服务端实际返回 --- OK # redis-cli 客户端显示  错误信息 错误信息和单行回复很像，不过是把 &ldquo;&#43;&rdquo; 替换成了 &ldquo;-&ldquo;。而这两者之间真正的区别是，错误信息会被客户端视为异常，并且组成错误类型的是错误消息本身。e.">
+        <meta itemprop="url" content="https://tao12345666333.github.io/note/Redis-Protocol/">
+        <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+          <meta itemprop="url" content="https://tao12345666333.github.io/note/images/default.jpg" />
+          <meta itemprop="width" content="800">
+          <meta itemprop="height" content="800">
+        </div>
+        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+          <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="https://tao12345666333.github.io/note/images/logo.jpg">
+            <meta itemprop="width" content="100">
+            <meta itemprop="height" content="100">
+          </div>
+          <meta itemprop="name" content="MoeLove Note">
+        </div>
+        <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <meta itemprop="name" content="TaoBeier">
+        </div>
 
+        <div class="image" style="background-image: url(https://tao12345666333.github.io/note/images/default.jpg);"></div>
+
+        <header class="article-header">
+          <time itemprop="datePublished" pubdate="pubdate" datetime="2017-03-04T23:22:05&#43;08:00">Sat, Mar 4, 2017</time>
+          <h1 class="article-title">理解 Redis 协议</h1>
+        </header>
+
+        <div class="article-body" itemprop="articleBody">
+          
+
+<h1 id="简介">简介</h1>
+
+<p>Redis 的客户端和服务端之间采取了一种独立名为 RESP(REdis Serialization Protocol) 的协议，作者主要考虑了以下几个点：</p>
+
+<ul>
+<li>容易实现</li>
+<li>解析快</li>
+<li>人类可读</li>
+</ul>
+
+<p>注意：RESP 虽然是为 Redis 设计的，但是同样也可以用于其他 C/S 的软件。</p>
+
+<h1 id="数据类型及示例">数据类型及示例</h1>
+
+<p>RESP 主要可以序列化以下几种类型：整数，单行回复(简单字符串)，数组，错误信息，多行字符串。Redis 客户端向服务端发送的是一组由执行的命令组成的字符串数组，服务端根据不同的命令回复不同类型的数据，但协议的每部分都是以 &ldquo;\r\n&rdquo; (CRLF) 结尾的。另外 RESP 是二进制安全的，不需要处理从一个进程到另一个进程的传输，因为它使用了前缀长度进行传输。</p>
+
+<p>在 RESP 中, 一些数据的类型通过它的第一个字节进行判断：</p>
+
+<ul>
+<li>单行回复：回复的第一个字节是 &ldquo;+&rdquo;</li>
+<li>错误信息：回复的第一个字节是 &ldquo;-&rdquo;</li>
+<li>整形数字：回复的第一个字节是 &ldquo;:&rdquo;</li>
+<li>多行字符串：回复的第一个字节是 &ldquo;\$&rdquo;</li>
+<li>数组：回复的第一个字节是 &ldquo;*&rdquo;</li>
+</ul>
+
+<h2 id="单行回复">单行回复</h2>
+
+<p>以 &ldquo;+&rdquo; 开头，以 &ldquo;\r\n&rdquo; 结尾的字符串形式。e.g.</p>
+
+<pre><code>+OK\r\n
+</code></pre>
+
+<p>响应的客户端库，应该返回除 &ldquo;+&rdquo; 和 CRLF 以外的内容，例如上面的内容，则返回 &ldquo;OK&rdquo;. e.g.</p>
+
+<pre><code>127.0.0.1:6379&gt; set name TaoBeier
++OK\r\n  # 服务端实际返回
+---
+OK   # redis-cli 客户端显示
+</code></pre>
+
+<h2 id="错误信息">错误信息</h2>
+
+<p>错误信息和单行回复很像，不过是把 &ldquo;+&rdquo; 替换成了 &ldquo;-&ldquo;。而这两者之间真正的区别是，错误信息会被客户端视为异常，并且组成错误类型的是错误消息本身。e.g.</p>
+
+<pre><code>-Error message\r\n
+</code></pre>
+
+<p>错误信息只在有错误发生的时候才会发送，比如数据类型错误，语法错误，或者命令不存在之类的。而当接收到错误信息的时候，客户端库应该抛出一个异常。e.g.</p>
+
+<pre><code>127.0.0.1:6379&gt; TaoBeier
+-ERR unknown command 'TaoBeier'\r\n  # 服务端实际返回, 下同
+---
+(error) ERR unknown command 'TaoBeier'  # redis-cli 客户端显示, 下同
+
+127.0.0.1:6379&gt; set name TaoBeier moelove
+-ERR syntax error\r\n
+---
+(error) ERR syntax error
+</code></pre>
+
+<h2 id="整数">整数</h2>
+
+<p>这种类型只是只是使用以 &ldquo;:&rdquo; 作为前缀，以CRLF作为结尾的字符串来表示整数。e.g. &ldquo;:666\r\n&rdquo; 或者 &ldquo;:999\r\n&rdquo; 这种的都是整数回复。很多命令都会返回整数回复，例如 <code>INCR</code> <code>LLEN</code> <code>LPUSH</code> 之类的命令。但是多数情况下，返回的整数回复并没有过多实际含义，例如 <code>LPUSH</code> 就只是为了表示插入了几个值，但也有例如 <code>EXISTS</code> 命令是当结果为 true 的时候返回 1，false 返回 0 . e.g.</p>
+
+<pre><code>127.0.0.1:6379&gt; LPUSH info TaoBeier MoeLove
+:2\r\n  # 服务端实际返回, 下同
+---
+(integer) 2  # redis-cli 客户端显示, 下同
+
+127.0.0.1:6379&gt; LLEN info
+:2\r\n
+---
+(integer) 2
+
+127.0.0.1:6379&gt; EXISTS info
+:1\r\n
+---
+(integer) 1
+
+127.0.0.1:6379&gt; DEL info
+:1\r\n
+---
+(integer) 1
+
+127.0.0.1:6379&gt; EXISTS info
+:0\r\n
+---
+(integer) 0
+</code></pre>
+
+<h2 id="多行字符串">多行字符串</h2>
+
+<p>多行字符串被服务端用来返回长度最大为 512MB 的单个二进制安全的字符串。以 &ldquo;\$&rdquo; 开头, 后跟实际要发送的字节数，随后是 CRLF，然后是实际的字符串数据，最后以 CRLF 结束。所以，例如我们要发送一个 &ldquo;moelove.info&rdquo; 的字符串，那它实际就被编码为 &ldquo;\$12\r\nmoelove.info\r\n&rdquo;。而如果一个要发送一个空字符串，则会编码为 &ldquo;\$0\r\n\r\n&rdquo; 。某些情况下，当要表示不存在的值时候，则以 &ldquo;\$-1\r\n&rdquo; 返回，这被叫做空多行字符串，当客户端库接收到这个响应的时候，同样应该返回一个空值（例如 <code>nil</code>）而不是一个空字符串。e.g.</p>
+
+<pre><code>127.0.0.1:6379&gt; set site moelove.info
++OK\r\n  # 服务端实际返回, 下同
+---
+OK   # redis-cli 客户端显示, 下同
+
+127.0.0.1:6379&gt; get site
+$12\r\nmoelove.info\r\n
+---
+&quot;moelove.info&quot;
+
+127.0.0.1:6379&gt; del site
+:1\r\n
+---
+(integer) 1
+
+127.0.0.1:6379&gt; get site
+$-1\r\n
+---
+(nil)
+
+127.0.0.1:6379&gt; set site ''
++OK\r\n
+---
+OK
+
+127.0.0.1:6379&gt; get site
+$0\r\n\r\n
+---
+&quot;&quot;
+</code></pre>
+
+<h2 id="数组">数组</h2>
+
+<p>数组类型可用于客户端向服务端发送命令，同样的当某些命令将元素结合返回给客户端的时候，也是使用数组类型作为回复类型的。它以 &ldquo;*&rdquo; 开头，后面跟着返回元素的个数，随后是 CRLF, 再然后就是数组中各元素自己的类型了。最典型的是 <code>LRRANGE</code> 命令，返回一个列表中的元素。e.g.</p>
+
+<pre><code>127.0.0.1:6379&gt; LPUSH info TaoBeier moelove.info
+:2\r\n   # 服务端实际返回, 下同
+---
+(integer) 2  # redis-cli 客户端显示, 下同
+
+127.0.0.1:6379&gt; LRANGE info 0 -1
+*2\r\n$12\r\nmoelove.info\r\n$8\r\nTaoBeier\r\n
+---
+1) &quot;moelove.info&quot;
+2) &quot;TaoBeier&quot;
+
+127.0.0.1:6379&gt; LPOP info
+$12\r\nmoelove.info\r\n
+---
+&quot;moelove.info&quot;
+
+127.0.0.1:6379&gt; LPOP info
+$8\r\nTaoBeier\r\n
+---
+&quot;TaoBeier&quot;
+
+127.0.0.1:6379&gt; LRANGE info 0 -1
+*0\r\n
+---
+(empty list or set)
+</code></pre>
+
+<h1 id="总结">总结</h1>
+
+<p>RESP 协议还是相对易于理解的，另外理解了协议也方便对 Redis 一些问题的定位及客户端的实现。</p>
+
+        </div>
+
+
+        <aside>
+          <div class="section"><a href="https://tao12345666333.github.io/note/tags/Redis" class="tag">Redis</a> </div>
+
+          <div class="section share">
+            <a href="http://www.facebook.com/sharer.php?src=bm&u=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Protocol%2f&t=%e7%90%86%e8%a7%a3%20Redis%20%e5%8d%8f%e8%ae%ae" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-facebook"></i></a>
+            <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Protocol%2f&text=%e7%90%86%e8%a7%a3%20Redis%20%e5%8d%8f%e8%ae%ae&tw_p=tweetbutton" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-twitter"></i></a>
+            <a href="https://plus.google.com/share?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Protocol%2f" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-google-plus"></i></a>
+            <a href="http://getpocket.com/edit?url=https%3a%2f%2ftao12345666333.github.io%2fnote%2fRedis-Protocol%2f&title=%e7%90%86%e8%a7%a3%20Redis%20%e5%8d%8f%e8%ae%ae" onclick="window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="fa fa-get-pocket"></i></a>
+          </div>
+
+          
+          
+          
+        </aside>
+
+      </article>
     </div>
 
     <div class="col-sm-3">
       <aside class="site">
 
+  
+  <div class="section">
+    <header><div class="title">TableOfContents</div></header>
+    <div class="list-default"><nav id="TableOfContents">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#数据类型及示例">数据类型及示例</a>
+<ul>
+<li><a href="#单行回复">单行回复</a></li>
+<li><a href="#错误信息">错误信息</a></li>
+<li><a href="#整数">整数</a></li>
+<li><a href="#多行字符串">多行字符串</a></li>
+<li><a href="#数组">数组</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</nav></div>
+  </div>
   
 
   
@@ -213,6 +442,7 @@ HTTP/0.9 是在 1991 年发布的第一个正式版本, 只接受 GET 方法，�
     </div>
 
   </div>
+
       </div>
 
     <footer class="site">
