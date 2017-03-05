@@ -1,5 +1,5 @@
 +++
-title = "Redis 协议简介"
+title = "理解 Redis 协议"
 draft = false
 date = "2017-03-04T23:22:05+08:00"
 categories = [ "Database" ]
