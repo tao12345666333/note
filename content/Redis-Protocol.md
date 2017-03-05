@@ -1,6 +1,6 @@
 +++
 title = "Redis 协议简介"
-draft = true
+draft = false
 date = "2017-03-04T23:22:05+08:00"
 categories = [ "Database" ]
 tags = ["Redis"]
@@ -18,7 +18,7 @@ Redis 的客户端和服务端之间采取了一种独立名为 RESP(REdis Seria
 注意：RESP 虽然是为 Redis 设计的，但是同样也可以用于其他 C/S 的软件。
 
 
-# 数据类型及应答
+# 数据类型及示例
 
 RESP 主要可以序列化以下几种类型：整数，单行回复(简单字符串)，数组，错误信息，多行字符串。Redis 客户端向服务端发送的是一组由执行的命令组成的字符串数组，服务端根据不同的命令回复不同类型的数据，但协议的每部分都是以 "\r\n" (CRLF) 结尾的。另外 RESP 是二进制安全的，不需要处理从一个进程到另一个进程的传输，因为它使用了前缀长度进行传输。
 
@@ -42,7 +42,9 @@ RESP 主要可以序列化以下几种类型：整数，单行回复(简单字�
 
 ```
 127.0.0.1:6379> set name TaoBeier
-OK
++OK\r\n  # 服务端实际返回
+---
+OK   # redis-cli 客户端显示
 ```
 
 ## 错误信息
@@ -57,8 +59,13 @@ OK
 
 ```
 127.0.0.1:6379> TaoBeier
-(error) ERR unknown command 'TaoBeier'
+-ERR unknown command 'TaoBeier'\r\n  # 服务端实际返回, 下同
+---
+(error) ERR unknown command 'TaoBeier'  # redis-cli 客户端显示, 下同
+
 127.0.0.1:6379> set name TaoBeier moelove
+-ERR syntax error\r\n
+---
 (error) ERR syntax error
 ```
 
@@ -68,16 +75,100 @@ OK
 
 ```
 127.0.0.1:6379> LPUSH info TaoBeier MoeLove
-(integer) 2
+:2\r\n  # 服务端实际返回, 下同
+---
+(integer) 2  # redis-cli 客户端显示, 下同
+
 127.0.0.1:6379> LLEN info
+:2\r\n
+---
 (integer) 2
+
 127.0.0.1:6379> EXISTS info
+:1\r\n
+---
 (integer) 1
+
 127.0.0.1:6379> DEL info
+:1\r\n
+---
 (integer) 1
+
 127.0.0.1:6379> EXISTS info
+:0\r\n
+---
 (integer) 0
 ```
 
 ## 多行字符串
+
+多行字符串被服务端用来返回长度最大为 512MB 的单个二进制安全的字符串。以 "\$" 开头, 后跟实际要发送的字节数，随后是 CRLF，然后是实际的字符串数据，最后以 CRLF 结束。所以，例如我们要发送一个 "moelove.info" 的字符串，那它实际就被编码为 "\$12\r\nmoelove.info\r\n"。而如果一个要发送一个空字符串，则会编码为 "\$0\r\n\r\n" 。某些情况下，当要表示不存在的值时候，则以 "\$-1\r\n" 返回，这被叫做空多行字符串，当客户端库接收到这个响应的时候，同样应该返回一个空值（例如 `nil`）而不是一个空字符串。e.g.
+
+```
+127.0.0.1:6379> set site moelove.info
++OK\r\n  # 服务端实际返回, 下同
+---
+OK   # redis-cli 客户端显示, 下同
+
+127.0.0.1:6379> get site
+$12\r\nmoelove.info\r\n
+---
+"moelove.info"
+
+127.0.0.1:6379> del site
+:1\r\n
+---
+(integer) 1
+
+127.0.0.1:6379> get site
+$-1\r\n
+---
+(nil)
+
+127.0.0.1:6379> set site ''
++OK\r\n
+---
+OK
+
+127.0.0.1:6379> get site
+$0\r\n\r\n
+---
+""
+```
+
 ## 数组
+
+数组类型可用于客户端向服务端发送命令，同样的当某些命令将元素结合返回给客户端的时候，也是使用数组类型作为回复类型的。它以 "*" 开头，后面跟着返回元素的个数，随后是 CRLF, 再然后就是数组中各元素自己的类型了。最典型的是 `LRRANGE` 命令，返回一个列表中的元素。e.g.
+
+```
+127.0.0.1:6379> LPUSH info TaoBeier moelove.info
+:2\r\n   # 服务端实际返回, 下同
+---
+(integer) 2  # redis-cli 客户端显示, 下同
+
+127.0.0.1:6379> LRANGE info 0 -1
+*2\r\n$12\r\nmoelove.info\r\n$8\r\nTaoBeier\r\n
+---
+1) "moelove.info"
+2) "TaoBeier"
+
+127.0.0.1:6379> LPOP info
+$12\r\nmoelove.info\r\n
+---
+"moelove.info"
+
+127.0.0.1:6379> LPOP info
+$8\r\nTaoBeier\r\n
+---
+"TaoBeier"
+
+127.0.0.1:6379> LRANGE info 0 -1
+*0\r\n
+---
+(empty list or set)
+```
+
+
+# 总结
+
+RESP 协议还是相对易于理解的，另外理解了协议也方便对 Redis 一些问题的定位及客户端的实现。
