@@ -9,7 +9,7 @@ tags = ["Redis"]
 
 # 简介
 
-Redis 的客户端和服务端之间采取了一种独立名为 RESP(REdis Serialization Protocol) 的协议，作者主要考虑了以下几个点：
+Redis 的客户端和服务端之间采取了一种独立名为 RESP(REdis Serialization Protocol) 的[协议](https://redis.io/topics/protocol)，作者主要考虑了以下几个点：
 
 * 容易实现
 * 解析快
