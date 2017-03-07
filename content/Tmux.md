@@ -28,6 +28,8 @@ iTerm2 是一个纯粹的 GUI 工具，它的切割是真正对窗口的切割�
 
 Tmux 不仅仅是一款终端分屏软件(终端复用器)，同时 Tmux 也可以随时断开或者进入会话，即终端会话保持（可能你会想到 Screen 但 Tmux 却可以做到更多）。想想你有没有遇到过在服务器上编译调试，去接了杯水回来发现 `Write failed: Broken pipe` 连接断开了，又得重新开始。如果你有过类似经历，那么还是把后面的内容看完，并开始使用 Tmux 吧！ 下面我们先来聊一下 Tmux 中的一些基本概念:
 
+![](http://moelove.qiniudn.com/tmux-session-window-pane.png)
+
 
 ## Session 会话
 
@@ -71,6 +73,93 @@ wget https://raw.githubusercontent.com/tao12345666333/dotfiles/master/tmux/tmux.
 ```
 
 ### 常用配置的说明
+
+#### 基础配置
+
+```
+set -g default-terminal 'screen-256color'
+# 设置默认颜色
+
+set -g status-utf8 on
+# 支持 utf-8 
+
+set -g history-limit 100000
+# 设置历史记录最大条数
+
+setw -g mode-keys vi
+# 设置按键模式为 Vi 模式
+```
+
+#### 窗口切割
+
+Tmux v1.9 开始 `default-path` 选项被移除，所以如果在某个位置新建窗口，则会跳转到家目录下，所以我们使用 `-c` 参数增加下面这些配置
+
+```
+unbind-key c
+# 取消对 c 键的绑定
+
+bind-key c new-window -c '#{pane_current_path}'
+# 将 c 键绑定为从当前路径创建新窗口
+
+unbind-key '"'
+# 取消对 " 键的绑定
+
+bind-key '"' split-window -v -c '#{pane_current_path}'
+# 将 " 键绑定为从当前路径水平切割窗口
+
+unbind-key %
+# 取消对 % 键的绑定
+
+bind-key % split-window -h -c '#{pane_current_path}'
+# 将 " 键绑定为从当前路径竖直切割窗口
+```
+
+
+#### 重载配置
+
+```
+bind-key R source-file ~/.tmux.conf \; display-message "Reload .."
+# 绑定 R 键，重载配置文件，并显示 "Reload .." 提示信息
+```
+
+#### 选择Pane(窗格)
+
+```
+# 以下配置为取消原有 hjkl 键的绑定
+# 并绑定 Pane 选择，和 Vim 操作一致
+unbind-key h
+bind-key h select-pane -L
+
+unbind-key j
+bind-key j select-pane -D
+
+unbind-key k
+bind-key k select-pane -U
+
+unbind-key l
+bind-key l select-pane -R
+```
+
+#### 设置颜色及状态栏
+
+```
+# 配置后的样式可参考我文末的截图
+
+set -g status-fg '#55ff53'
+set -g status-bg '#0a4174'
+set -g status-left-fg '#55ff53'
+set -g status-left-bg '#0a4174'
+set -g status-right-fg '#55ff53'
+set -g status-right-bg '#0a4174'
+set -g status-left-length 90
+set -g status-right-length 90
+set -g status-left '[#(whoami)]'
+set -g status-right '[#(date +" %m-%d %H:%M ")]'
+set -g status-justify "centre"
+
+set -g pane-active-border-fg '#55ff53'
+set -g pane-border-fg '#7fcfee'
+```
 
 
 # 使用
@@ -141,3 +230,5 @@ starttmux
 
 
 备注：以上内容会持续更新完善。请留意 http://moelove.info
+或者扫码关注公众号
+![MoeLove](http://moelove.qiniudn.com/my_qrcode.jpg)
