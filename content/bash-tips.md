@@ -222,5 +222,5 @@ Ctrl + r : 搜索历史中输入过的命令
 
 
 -------
-欢迎扫码关注公众号和我交流你的想法~
+欢迎扫码关注公众号
 ![MoeLove](http://moelove.qiniudn.com/my_qrcode.jpg)
